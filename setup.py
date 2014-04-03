@@ -3,7 +3,7 @@ import sys, os
 
 version = '0.1'
 
-setup(name='seeing_in_3d',
+setup(name='seeing3d',
       version=version,
       description="Companion code for Seeing chairs in 3D",
       long_description="""\
