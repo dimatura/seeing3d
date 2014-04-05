@@ -1,4 +1,4 @@
-seeing_in_3d
+seeing3d
 ============
 
 Dependencies
