@@ -1,9 +1,8 @@
 seeing_in_3d
 ============
 
-
 Dependencies
-------------
+-------------
 
 - Numpy http://www.numpy.org
 - Panda 3D https://www.panda3d.org
@@ -16,4 +15,4 @@ Dependencies
 TODO
 ----
 
-Scraper is not working anymore.
+- Warehouse 3D markup changed, breaking scraper.
