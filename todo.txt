@@ -1,8 +1,8 @@
 
 Would really be good:
 1. write the camera matrices for each rendered views (corresponding to the ply files) 
-2. share the code for downloading, converting to .ply and rendering the models.
+2. share the code for downloading, converting to .ply and rendering the models. (done)
 
 less important:
-3. get the ply model for 'bec78ebd204764f637a0eda928b574d2'
+3. get the ply model for 'bec78ebd204764f637a0eda928b574d2' (done)
 4. redo the sampling and rendering to have the exact same orientations (real orientation, including orientation_theta_deg) for all the chairs and avoid having img_1==img_31 and img_32==img_63
