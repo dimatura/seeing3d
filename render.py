@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 Render 3D models from multiple viewpoints and save as .png
 """

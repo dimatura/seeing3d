@@ -6,3 +6,5 @@ Would really be good:
 less important:
 3. get the ply model for 'bec78ebd204764f637a0eda928b574d2' (done)
 4. redo the sampling and rendering to have the exact same orientations (real orientation, including orientation_theta_deg) for all the chairs and avoid having img_1==img_31 and img_32==img_63
+
+the point was not clear: you had 2 different view angles sets in 'renders' and 'renders_norm_left', and it turns out the ones from the 'renders' are important, but you don't have it for all chairs
