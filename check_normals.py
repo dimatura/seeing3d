@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 
 """
 see if normals are plausible by looking at their norm.
