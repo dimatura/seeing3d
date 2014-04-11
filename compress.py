@@ -13,7 +13,6 @@ import path
 
 parser = argparse.ArgumentParser()
 parser.add_argument('model_dir', nargs='+', action='store')
-parser.add_argument('--all', action='store_true')
 parser.add_argument('--dae', action='store_true')
 parser.add_argument('--wrl', action='store_true')
 parser.add_argument('--ply', action='store_true')
@@ -27,9 +26,11 @@ if args.verbose:
     pprint.pprint(dirs)
 
 exts = []
-if args.all or args.dae: exts.append('dae')
-if args.all or args.wrl: exts.append('wrl')
-if args.all or args.ply: exts.append('ply')
+if args.dae: exts.append('dae')
+if args.wrl: exts.append('wrl')
+if args.ply: exts.append('ply')
+if len(exts)==0: exts.extend(['dae', 'wrl', 'ply'])
+
 if args.verbose:
     pprint.pprint(exts)
 

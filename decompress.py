@@ -13,7 +13,6 @@ import path
 
 parser = argparse.ArgumentParser()
 parser.add_argument('model_dir', nargs='+', action='store')
-parser.add_argument('--all', action='store_true')
 parser.add_argument('--dae', action='store_true')
 parser.add_argument('--wrl', action='store_true')
 parser.add_argument('--ply', action='store_true')
@@ -27,16 +26,18 @@ if args.verbose:
     pprint.pprint(dirs)
 
 exts = []
-if args.all or args.dae: exts.append('dae')
-if args.all or args.wrl: exts.append('wrl')
-if args.all or args.ply: exts.append('ply')
+if args.dae: exts.append('dae')
+if args.wrl: exts.append('wrl')
+if args.ply: exts.append('ply')
+if len(exts)==0: exts.extend(['dae', 'wrl', 'ply'])
+
 if args.verbose:
     pprint.pprint(exts)
 
 #base_dir = path.path(sys.argv[1])
 #for d in base_dir.dirs():
 for d in dirs:
-    for ext in ('wrl', 'ply', 'dae'):
+    for ext in exts:
         fname = d/('model.%s.gz'%ext)
         if not fname.exists(): continue
         cmd = ['gunzip', fname]
