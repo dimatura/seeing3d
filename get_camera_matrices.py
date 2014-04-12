@@ -1,10 +1,16 @@
 #!/usr/bin/env python
 
 """
-Get camera matrices
+Get camera matrices.
+
+This an example showing how to obtain the modelview and projection matrices
+for the Panda3D camera pose and "lens" settings used by seeing3d.
+As a side effect a window may pop-up; ignore it.
+
 """
 
 import os
+import argparse
 import pprint
 
 import numpy as np
@@ -36,44 +42,29 @@ def as_numpy(A):
     return a
 
 base = ShowBase()
-#lens = PerspectiveLens()
-#lens.setFov(54.611362) #from sketchup fov
-#lens.setFocalLength(FOCAL_LENGTH_IN)
- # TODO can be a parameter
-#base.camLens.setFocalLength(FOCAL_LENGTH_IN)
-#base.camLens.setFilmSize(0.94499189, 1.41732283)
-#base.camLens.setFilmSize(0.94499189)
-# so both of these apparently are 36 mm film size
-#base.camLens.setFilmSize(1.41732283)
-
 base.camLens.setFov(54.611362) #from sketchup fov
 base.camLens.setFocalLength(FOCAL_LENGTH_IN)
-
-#rho_ins = [8*12]
-rho_ins = [15*12]
-#rho_ins = [60]
-phi_degs = [20, 40]
-#phi_degs = [20]
-theta_degs = np.linspace(0, 360, 32.)
-#theta_degs = [0]
-total = len(rho_ins)*len(phi_degs)*len(theta_degs)
 
 rho_in = 12*8
 phi_deg = 20
 theta_deg = 0
 
-obj_centered_camera_pose(12*8, phi_deg, theta_deg)
+# arrange the model and the camera pose
+obj_centered_camera_pose(rho_in, phi_deg, theta_deg)
 
 C = as_numpy(Mat4.convertMat(CSYupRight, base.camLens.getCoordinateSystem()))
 P = as_numpy(base.camLens.getProjectionMat())
 proj = np.dot(C, P)
-print 'proj'
-print proj
+
+print('projection matrix = ')
+print(proj)
+
 gsg = base.win.getGsg()
 S = as_numpy(Mat4.convertMat(gsg.getCoordinateSystem(), CSYupRight))
 V = as_numpy(base.cam.getMat())
 M = np.linalg.inv(V)
 modelview = np.dot(M, S)
-print 'modelview'
-print modelview
+
+print('modelview matrix = ')
+print(modelview)
 
