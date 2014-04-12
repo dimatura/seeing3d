@@ -35,6 +35,8 @@ parser.add_argument('--theta-delta-deg', action='store', type=int,
         help='theta/yaw increments in degrees', default=32)
 parser.add_argument('--mkdir', action='store_true')
 parser.add_argument('--clear-cache', action='store_true')
+parser.add_argument('--wrl', action='store_true',
+        help='Use .wrl model. Note: this has no texture')
 args = parser.parse_args()
 
 if args.phi_deg: args.phi_deg = sorted(args.phi_deg)
@@ -95,22 +97,32 @@ def setup():
 
 def load_model():
     model_dir = path.path(args.MODEL_DIR)
-    daepath = (model_dir/('model.dae'))
-    compressed = False
-    if (not os.path.exists(daepath) and os.path.exists(daepath+'.gz')):
-        subprocess.check_call(['gunzip', daepath+'.gz'])
-        compressed = True
-    (fd, eggpath) = tempfile.mkstemp(suffix='.egg')
-    os.close(fd)
-    subprocess.check_call(['dae2egg', '-o', eggpath, daepath])
-    print 'loading ', daepath
-    model = loader.loadModel(eggpath)
-    os.remove(eggpath)
-    if compressed: subprocess.check_call(['gzip', daepath])
+
+    if not args.wrl:
+        daepath = (model_dir/('model.dae'))
+        compressed = False
+        if (not os.path.exists(daepath) and os.path.exists(daepath+'.gz')):
+            subprocess.check_call(['gunzip', daepath+'.gz'])
+            compressed = True
+        (fd, eggpath) = tempfile.mkstemp(suffix='.egg')
+        os.close(fd)
+        subprocess.check_call(['dae2egg', '-o', eggpath, daepath])
+        print('loading %s'%daepath)
+        model = loader.loadModel(eggpath)
+        os.remove(eggpath)
+        if compressed: subprocess.check_call(['gzip', daepath])
+    else:
+        wrlpath = (model_dir/('model.wrl'))
+        print('loading %s'%wrlpath)
+        model = loader.loadModel(wrlpath)
+
     with open(model_dir/'metadata.json') as f:
         metadata = json.load(f)
     center = metadata['bb_center'] # unit inches
     model.setPos(-center[0], -center[1], -center[2])
+    # TODO this is a bit of a hack.
+    if args.wrl:
+        model.setHpr(0, -90, 0)
     model.reparentTo(alt_render)
 
 def lighting():
