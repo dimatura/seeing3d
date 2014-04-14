@@ -52,6 +52,11 @@ directory ``~/chairs/1028b32dc1873c2afe26a3ac360dbd4`` as a sequence of files
 in tmp_renders. Note that you will see an empty window pop up, which is a
 side-effect of the rendering process.
 
+For a visualization of the phi, theta and rho parameters see the following
+figure:
+
+![Camera and model](https://raw.githubusercontent.com/dimatura/seeing3d/master/doc/chair_camera_render.jpg?token=60116__eyJzY29wZSI6IlJhd0Jsb2I6ZGltYXR1cmEvc2VlaW5nM2QvbWFzdGVyL2RvYy9jaGFpcl9jYW1lcmFfcmVuZGVyLmpwZyIsImV4cGlyZXMiOjEzOTgxMTkyOTh9--56522a87fb4438feae3d411e53f9f0c5870aee32)
+
 ### How does rendering work?
 
 Conceptually, we set up the scene (including camera, model and lighting),
