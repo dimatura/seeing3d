@@ -6,10 +6,10 @@ import urllib2
 import sys
 import argparse
 import cStringIO as StringIO
-import Image
 import shutil
 import random
 import json
+import Image
 
 from BeautifulSoup import BeautifulSoup
 import path
