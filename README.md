@@ -67,6 +67,15 @@ models tend to not be very robust.
 
 You are encouraged to examine and improve the code.
 
+### How to get DAE from SKP? (Added April 8 2015)
+
+If you download the SKP files from warehouse you can't use them directly with this software.
+You can convert models manually with sketchup's export feature. 
+This obviously doesn't scale well for many models. I wrote a script (``export_dae.rb``)
+to export them using the ruby API, which I haven't put here before because it's 
+basically a quick hack and I don't know ruby. However, you may still find it useful.
+
+
 TODO
 ----
 
