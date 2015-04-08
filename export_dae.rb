@@ -1,9 +1,15 @@
 
+# Batch sketchup DAE from SKP
+# Daniel Maturana dimatura@cmu.edu 2015
+#
 # This is a example script to export files using Sketchup's ruby scripting.
-# Therefore you have to run it from inside ruby. (I just use the console).
+# Therefore you have to run it from inside Sketchup. (I just use the ruby console).
 # btw: I am not a ruby programmer!
 # Also: I haven't tried this in a long time, so you may have to change for
 # newer sketchup versions.
+#
+# By the way, if you try to run this inside a virtual machine the chances
+# are it won't work because of graphics card issues.
 
 require 'sketchup.rb'
 
